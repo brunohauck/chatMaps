@@ -31,6 +31,7 @@ public class UserListActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private UserListAdapter adapter;
     private ProgressDialog pDialog;
+    private String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +42,9 @@ public class UserListActivity extends AppCompatActivity {
         Requisicao req = new Requisicao();
         req.setMsg("GET_USER");
 
+        id = getIntent().getExtras().getString("id");
+
+        Log.d("ID ->", id);
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(ctx));
         pDialog = new ProgressDialog(ctx);
@@ -66,6 +70,7 @@ public class UserListActivity extends AppCompatActivity {
                     public void onClick(User user) {
                         Intent intent = new Intent(ctx, ChatActivity.class);
                         intent.putExtra("object", (Serializable) user);
+                        intent.putExtra("id",id);
                         startActivity(intent);
                     }
 

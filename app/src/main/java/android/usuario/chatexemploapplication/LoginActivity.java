@@ -332,7 +332,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 String username = mEmail;
                 String password = mPassword;
                 // URL de conexao
-                String link="https://www.softwareon.com.br/software/login/login_bypass";
+                //String link="https://www.softwareon.com.br/software/login/login_bypass";
+                String link="http://deverp.idsgeo.com/page/login_user_app";
                 String data = URLEncoder.encode("username", "UTF-8") + "="
                         + URLEncoder.encode(username, "UTF-8");
                 data += "&" + URLEncoder.encode("password", "UTF-8") + "="
@@ -385,9 +386,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             mAuthTask = null;
             showProgress(false);
             if (result.equals("email_invalido")) {
-
                 getLoaderManager().destroyLoader(0);
-
                 Context context = getApplicationContext();
                 // Mensagem do Toast
                 CharSequence text = "Ocorreu um erro ou Usuário ou senha inválidos";
@@ -398,9 +397,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 toast.show();
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
                 mPasswordView.requestFocus();
-
             } else {
-
                 // Instancia um objeto do tipo intent para chamar outra Activity
                 // no caso a Logado
                 Intent intent = new Intent(LoginActivity.this,

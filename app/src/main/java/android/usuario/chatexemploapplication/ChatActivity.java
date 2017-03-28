@@ -50,6 +50,7 @@ public class ChatActivity extends AppCompatActivity {
     private ProgressDialog pDialog;
     private double lat;
     private double lng;
+    private String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +67,8 @@ public class ChatActivity extends AppCompatActivity {
         pDialog.setIndeterminate(false);
         pDialog.setCancelable(false);
 
-
+        id = getIntent().getExtras().getString("id");
+        getLocationbyLatLng();
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,7 +85,8 @@ public class ChatActivity extends AppCompatActivity {
                 Mensagem men = new Mensagem();
                 men.setMsgEnviada(editTextMsg.getText().toString());
                 men.setUserIdDestino(user.getId().toString());
-                men.setUserIdOrigem("1");
+                id = getIntent().getExtras().getString("id");
+                men.setUserIdOrigem(id);
                 men.setLatitude(lat);
                 men.setLongitude(lng);
 
@@ -140,6 +143,7 @@ public class ChatActivity extends AppCompatActivity {
 
                 Log.d("DEBUG", "Entrou no ERRO");
                 Toast.makeText(ctx, "ERRO", Toast.LENGTH_LONG).show();
+                Toast.makeText(ctx, error.toString(), Toast.LENGTH_LONG).show();
             }
         };
     }
