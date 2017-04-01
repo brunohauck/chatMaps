@@ -38,11 +38,14 @@ public class UserListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_list);
         ctx = this;
+
+
+        id = getIntent().getExtras().getString("id");
+
         RequestQueue queue = Volley.newRequestQueue(ctx);
         Requisicao req = new Requisicao();
         req.setMsg("GET_USER");
-
-        id = getIntent().getExtras().getString("id");
+        req.setUserId(id);
 
         Log.d("ID ->", id);
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);

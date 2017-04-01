@@ -87,8 +87,8 @@ public class ChatActivity extends AppCompatActivity {
                 men.setUserIdDestino(user.getId().toString());
                 id = getIntent().getExtras().getString("id");
                 men.setUserIdOrigem(id);
-                men.setLatitude(lat);
-                men.setLongitude(lng);
+                men.setLatitude(String.valueOf(lat));
+                men.setLongitude(String.valueOf(lng));
 
                 GenericRequest<MensagemList> myReq = new GenericRequest<MensagemList>(Request.Method.POST, "http://deverp.idsgeo.com/page/get_mensagem_json",
                         MensagemList.class, men, createMyReqSuccessListener(), createMyReqErrorListener());

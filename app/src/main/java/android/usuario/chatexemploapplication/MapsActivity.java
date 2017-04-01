@@ -61,10 +61,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         for(Mensagem mapItem : mapItemList) {
 
-            LatLng bounder = new LatLng(mapItem.getLatitude(), mapItem.getLongitude());
+            Double convertLat = Double.parseDouble(mapItem.getLatitude());
+            Double convertLng = Double.parseDouble(mapItem.getLongitude());
+            LatLng bounder = new LatLng(convertLat, convertLng);
             builder.include(bounder);
             String coordinates = "Latitude: " + mapItem.getLatitude().toString() + "  Logitude: " + mapItem.getLongitude().toString();
-            addMarker(mMap, mapItem.getLatitude(), mapItem.getLongitude(), mapItem.getMsgEnviada(), coordinates);
+            addMarker(mMap, convertLat, convertLng, mapItem.getMsgEnviada(), coordinates);
 
             final LatLngBounds bounds = builder.build();
             mMap.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
